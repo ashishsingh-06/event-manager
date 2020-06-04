@@ -1,0 +1,14 @@
+<h1 mat-dialog-title style="font-weight: 900; text-decoration: none;">Registered</h1>
+<hr>
+<mat-dialog-content>
+    <div class="container">
+        <p>Dear <b>{{registrationId.substr(0,registrationId.indexOf('_'))}}</b></p>
+        <p>you are now registered</p>
+        <p>Please note your registeration ID <b>{{registrationId}}</b></p>
+        <img class="check" src="https://img.icons8.com/fluent/50/000000/verified-account.png"/>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+    <!-- <button mat-button mat-dialog-close class="btn btn-success">Close</button> -->
+    <!-- <button mat-button class="btn btn-success">Submit</button> -->
+</mat-dialog-actions>

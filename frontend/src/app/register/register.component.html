@@ -1,0 +1,132 @@
+<div class="main-div">
+    <nav  class="navbar">
+        <h1>EM</h1>
+    </nav>
+</div>
+<div class="btn-group" role="group" aria-label="Basic example">
+    <button mat-raised-button routerLink='' type="button" style="font-weight: 500;" class="btn btn-success">Home</button>
+    <button mat-raised-button routerLink='register' type="button" style="font-weight: 500;" class="btn btn-success">Register</button>
+</div>
+<h2>Register<br> For Events <br> Instantly.</h2>
+<img class="my-image" src="../../assets/images/m.png" alt="hekko">
+<div class="mid-div">
+    <div class="card one">
+        <div class="card-body one">
+            <div class="card register">
+                <div class="card-body register">
+                    <h3>Register Here</h3>
+                    <!-- <p class="admin">Fill to register</p> -->
+                    <hr>
+                    <form #registerForm="ngForm" class="was-validated">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label class="font-weight-bold">First Name</label>
+                                <input type="text" class="form-control" placeholder="First Name" 
+                                #first="ngModel" name="first" [(ngModel)]="userModel.firstName" required pattern="[a-zA-Z ]*">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="font-weight-bold">Last Name</label>
+                                <input type="text" class="form-control" required placeholder="Last Name" #last="ngModel" pattern="[a-zA-Z ]*" name="last" [(ngModel)]="userModel.lastName">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                              <label class="font-weight-bold">Mobile</label>
+                              <input type="number" class="form-control" required pattern="^\d{10}$" placeholder="Mobile" #mobile name="mobile" pattern="^\d{10}$" [(ngModel)]="userModel.mobile">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label class="font-weight-bold">Email</label>
+                                <input type="text" class="form-control" required placeholder="Email" #email name="email" [(ngModel)]="userModel.email">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-12">
+                                <label class="font-weight-bold">ID Card</label>
+                                <input #file type="file" accept="image/*" required (change)="selectImage(file.files)" #image name="image" [(ngModel)]="userModel.image">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-row">
+                            <div class="form-group col-md-7">
+                                <label class="font-weight-bold">Type</label>
+                                <select #type (change)="getTickets(type.value)" class="form-control" required name="type" [(ngModel)]="userModel.registrationType">
+                                    <option value="" selected hidden disabled>Registration</option>
+                                    <option value="Solo">Solo</option>
+                                    <option value="Group">Group</option>
+                                    <option value="Corporate">Corporate</option>
+                                    <option value="Others">Others</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-5">
+                                <label class="font-weight-bold">No of Tickets</label>
+                                <input type="number" class="form-control" required placeholder="Tickets" #tickets name="tickets" value="userModel.noOfTickets" [(ngModel)]="userModel.noOfTickets">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <button [disabled]="registerForm.form.invalid || isLoading" class="btn btn-success" (click)="open(content)">
+                                Register
+                                <img *ngIf="isLoading" style="width: 20px ;height: 20px;" src="../../assets/images/loading.gif" alt="">
+                                </button>
+                                <button style="margin-left: 8px;" class="btn btn-success" (click)="reset()">Reset</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<svg class="my-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#5cb85c" fll-opacity="1" d="M0,128L80,117.3C160,107,320,85,480,106.7C640,128,800,192,960,213.3C1120,235,1280,213,1360,202.7L1440,192L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path></svg>
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 style="font-weight: bold;" class="modal-title" id="modal-basic-title">Preview</h4>
+        <!-- <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button> -->
+      </div>
+      <div class="modal-body">
+        <form #previewForm>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label class="font-weight-bold">Name</label>
+                    <p>{{userModel.firstName}} {{userModel.lastName}}</p>
+                </div>
+                <div class="form-group col-md-6">
+                    <label class="font-weight-bold" >Mobile</label>
+                    <p>{{userModel.mobile}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <label class="font-weight-bold" >Email</label>
+                    <p>{{userModel.email}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <label class="font-weight-bold">ID Card</label>
+                    <br>
+                    <!-- <img class="idCard" [src]="imgURL" *ngIf="imgURL" > -->
+                    <img class="idCard" [src]="imgURL" alt="ID Card" style="width:150px" *ngIf="imgURL">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label class="font-weight-bold">Registration Type</label>
+                    <p>{{userModel.registrationType}}</p>
+                </div>
+                <div class="form-group col-md-6">
+                    <label class="font-weight-bold">No of Tickets</label>
+                    <p>{{userModel.noOfTickets}}</p>
+                </div>
+            </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button mat-raised-button class="btn btn-dark" (click)="modal.close('Save click')">Close</button>
+        <button mat-raised-button style="margin-left: 5px;"  class="btn btn-success" (click)="onSubmit();modal.close('Save click')">Submit</button>
+      </div>
+</ng-template>

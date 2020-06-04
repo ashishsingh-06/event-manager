@@ -1,0 +1,67 @@
+<div class="main-div">
+    <nav  class="navbar">
+        <h1>EM</h1>
+    </nav>
+    <!-- <hr> -->
+</div>
+<div class="btn-group" role="group" aria-label="Basic example">
+    <button mat-raised-button routerLink='' type="button" style="font-weight: 500;" class="btn btn-success">Home</button>
+    <button mat-raised-button routerLink='register' type="button" style="font-weight: 500;" class="btn btn-success">Register</button>
+</div>
+<h2>Event Manager <br> For Hassle-Free <br> Registrations.</h2>
+<img class="my-image" src="../../assets/images/m.png" alt="hekko">
+<div class="mid-div">
+    <div class="card one">
+        <div class="card-body one">
+            <div class="card admin">
+                <div class="card-body admin">
+                    <h3>Welcome<br>To Event Manager</h3>
+                    <p class="admin">Login to access admin dashboard.</p>
+                    <hr>
+                    <form #adminForm="ngForm" (ngSubmit)="onSubmit()">
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <mat-form-field class="full-width" appearance="outline">
+                                    <mat-label>Username</mat-label>
+                                    <input type="text" matInput placeholder="" required #username="ngModel" name="username" [(ngModel)]="adminModel.username">
+                                    <mat-icon matSuffix>perm_identity</mat-icon>
+                                </mat-form-field>
+                                
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <mat-form-field class="full-width" appearance="outline">
+                                    <mat-label>Password</mat-label>
+                                    <input matInput type="password" required #password="ngModel" name="password" [(ngModel)]="adminModel.password">
+                                    <!-- <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                    </button> -->
+                                    <mat-icon matSuffix>login</mat-icon>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <button [disabled]="adminForm.form.invalid || isLoading" class="btn btn-success">Log In
+                                    <img *ngIf="isLoading" style="width: 20px; height: 20px;" src="../../assets/images/loading.gif" alt="">
+                                </button>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- <div class="card register">
+
+            </div> -->
+        </div>
+    </div>
+</div>
+<!-- <svg class="my-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#0099ff" fill-opacity="1" d="M0,96L48,101.3C96,107,192,117,288,128C384,139,480,149,576,160C672,171,768,181,864,160C960,139,1056,85,1152,53.3C1248,21,1344,11,1392,5.3L1440,0L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg> -->
+<!-- <svg class="my-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#0099ff" fill-opacity="1" d="M0,160L40,144C80,128,160,96,240,69.3C320,43,400,21,480,42.7C560,64,640,128,720,149.3C800,171,880,149,960,138.7C1040,128,1120,128,1200,117.3C1280,107,1360,85,1400,74.7L1440,64L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z"></path></svg> -->
+<!-- <svg class="my-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="black" fill-opacity="1" d="M0,96L48,106.7C96,117,192,139,288,133.3C384,128,480,96,576,101.3C672,107,768,149,864,160C960,171,1056,149,1152,138.7C1248,128,1344,128,1392,128L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg> -->
+<svg class="my-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#5cb85c" fll-opacity="1" d="M0,128L80,117.3C160,107,320,85,480,106.7C640,128,800,192,960,213.3C1120,235,1280,213,1360,202.7L1440,192L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path></svg>

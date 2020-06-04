@@ -1,0 +1,148 @@
+<div class="main-div">
+    <div class="one">
+        <div class="sidebar">
+            <h3>ADMIN DASHBOARD</h3>
+            <hr>
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>View</mat-label>
+                <mat-select #showData (selectionChange)="showValue($event)">
+                    <mat-option value="Chart">Chart</mat-option>
+                    <mat-option value="Table">Table</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <h2>Total tickets sold {{totalTickets}}</h2>
+            <!-- <select #showData (change)="showValue($event)" class="form-control" name="show" ngModel>
+                <option value="" selected hidden disabled>view</option>
+                <option value="Chart">Chart</option>
+                <option value="Table">Table</option>
+            </select> -->
+           <button style="font-weight:500;" routerLink='' mat-raised-button class="btn btn-success logout">Log Out</button>
+        </div>
+    </div>
+    <div class="two">
+        <div class="right-sidebar">
+            <div class="row" *ngIf="showChart">
+                <div class="col-lg-3">
+                    <div class="card" style="background-color: white">
+                        <div class="card-body">
+                            <h1>SOLO</h1>
+                            <p>Registered users {{soloUsers}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="card" style="background-color: white">
+                        <div class="card-body">
+                            <h1>GROUP</h1>
+                            <p>Registered users {{groupUsers}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h1>CORPORATE</h1>
+                            <p>Registered users {{corporateUsers}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h1>OTHERS</h1>
+                            <p>Registered users {{otherUsers}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="showChart" class="chart">
+                <canvas baseChart
+                        [data]="pieChartData"
+                        [labels]="pieChartLabels"
+                        [chartType]="pieChartType"
+                        [legend]="pieChartLegend"
+                        [colors]="pieChartColors"
+                        (chartHover)="chartHovered($event)"
+                        (chartClick)="chartClicked($event)">
+                </canvas>
+            </div>
+            <div *ngIf="showTable"  class="table-wrapper-scroll-y my-custom-scrollbar">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th *ngFor="let column of tableHeaders"> 
+                                {{column}}
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of result">
+                            <td #my *ngFor="let column of headers" (click)="display(content,item)">
+                                {{item[column]}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h1></h1>
+    </div>
+    <div class="modal-body">
+        <form>
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="font-weight-bold">First Name</label>
+                    <h4>{{tableItem.firstName}}</h4>
+                </div>
+                <div class="col-md-6">
+                    <label class="font-weight-bold">Last Name</label>
+                    <h4>{{tableItem.lastName}}</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="font-weight-bold">Mobile</label>
+                    <h4>{{tableItem.mobile}}</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="font-weight-bold">Email</label>
+                    <h4>{{tableItem.email}}</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <!-- <label class="font-weight-bold">ID Card</label>
+                    <br>
+                    <img class="idCard" style="width: 100px;height: 100px;" [src]="imgUrl" alt="id card">
+                    <br> -->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="font-weight-bold">Registration Type</label>
+                    <h4>{{tableItem.registrationType}}</h4>
+                </div>
+                <div class="col-md-6">
+                    <label class="font-weight-bold">Registration ID</label>
+                    <h4>{{tableItem.registrationId}}</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <label class="font-weight-bold">Registration Date and Time</label>
+                    <h4>{{tableItem.registrationDate}}</h4>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button mat-raised-button class="btn btn-dark" (click)="modal.close('Save click')">Close</button>
+    </div>
+</ng-template>
